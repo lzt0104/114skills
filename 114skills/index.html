@@ -82,6 +82,33 @@
             line-height: 1.5;
             min-height: 40px;
         }
+        .founder-section {
+            text-align: center;
+            padding: 2.5rem;
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .founder-section img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 3px solid #0288d1;
+        }
+        .founder-section h2 {
+            color: #0288d1;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .founder-section p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
         @media (max-width: 767px) {
             body {
                 padding-top: 60px;
@@ -112,6 +139,19 @@
                 font-size: 0.9rem;
                 padding: 10px 20px;
                 min-height: 36px;
+            }
+            .founder-section {
+                padding: 1.5rem;
+            }
+            .founder-section img {
+                width: 120px;
+                height: 120px;
+            }
+            .founder-section h2 {
+                font-size: 1.5rem;
+            }
+            .founder-section p {
+                font-size: 1rem;
             }
         }
     </style>
@@ -151,18 +191,26 @@
     </nav>
 
     <!-- Main Content -->
-<div class="container">
-    <div class="welcome-section">
-        <h1>與技優甄審社群一起，開啟你的夢想之旅！</h1>
-        <p>技優甄審的路上，你並不孤單！我們是一個充滿熱情的學生社群，專為你提供豐富的歷屆資料、實用的備審參考，以及溫暖的LINE互助社群。</p>
-        <p>讓我們一起努力，準備好迎接屬於你的未來吧！</p>
-        <div>
-            <a href="reference.html" class="btn btn-primary">馬上探索備審資源</a>
-            <a href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn btn-success">加入我們的溫暖社群</a>
+    <div class="container">
+        <div class="welcome-section">
+            <h1>與技優甄審社群一起，開啟你的夢想之旅！</h1>
+            <p>技優甄審的路上，你並不孤單！我們是一個充滿熱情的學生社群，專為你提供豐富的歷屆資料、實用的備審參考，以及溫暖的LINE互助社群。</p>
+            <p>讓我們一起努力，準備好迎接屬於你的未來吧！</p>
+            <div>
+                <a href="reference.html" class="btn btn-primary">馬上探索備審資源</a>
+                <a href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn btn-success">加入我們的溫暖社群</a>
+            </div>
         </div>
+        
+        <!-- Founder Section -->
+        <div class="founder-section">
+            <h2>創辦人的話</h2>
+            <img src="./assets/images/IMG_4987.JPG" alt="創辦人照片">
+            <p>大家好！我是這個社群的創辦人。創辦這個平台的初衷，是希望幫助更多像我一樣在技優甄審路上努力的同學，能夠少走一些彎路，找到屬於自己的方向。我們集結了歷屆的寶貴資料、實用的備審建議，並打造了一個溫暖的互助社群，讓大家可以彼此支持、共同成長。希望你能在這裡找到資源與信心，勇敢追逐夢想！</p>
+        </div>
+        
+        <div id="pastContent" class="mt-4"></div>
     </div>
-    <div id="pastContent" class="mt-4"></div>
-</div>
 
     <!-- 頁尾 -->
     <footer>
