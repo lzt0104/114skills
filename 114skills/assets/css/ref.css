@@ -4,6 +4,7 @@
 body {
   background-color: var(--body-bg);
   color: var(--text-dark);
+  overscroll-behavior: none; /* 防止手機上的過度滾動 */
 }
 
 #pdfContent h1 {
@@ -28,6 +29,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .pdf-list-container .card:hover {
@@ -36,8 +38,10 @@ body {
 
 .pdf-canvas {
   max-width: 100%;
+  width: 100%;
   height: auto;
-  pointer-events: none;
+  display: block;
+  touch-action: pan-y pinch-zoom; /* 支援觸控滑動和縮放 */
 }
 
 .pdf-viewer {
@@ -46,49 +50,94 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: auto; /* 允許垂直滾動 */
+  -webkit-overflow-scrolling: touch; /* iOS平滑滾動 */
 }
 
 .pdf-viewer .card-body {
   flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.category-btn {
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  background: #f0f0f0;
-  border: none;
-  white-space: normal;
+.pdf-pages {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
-.category-btn:hover {
-  background-color: #e0f7fa;
+.pdf-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.category-btn.active {
-  background-color: var(--bs-primary);
-  color: #fff;
+.page-info {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* 手機版調整 */
+@media (max-width: 767.98px) {
+  .pdf-list-container .row-cols-md-2 {
+    display: flex;
+    flex-direction: column; /* 垂直排列卡片 */
+  }
+
+  .pdf-viewer .card-body {
+    max-height: 80vh; /* 限制卡片高度 */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pdf-canvas {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pdf-navigation {
+    position: sticky;
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+    padding: 5px;
+    border-radius: 5px;
+  }
 }
 
 .pagination {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  gap: 0.5rem; /* 統一間距，替代mx-3 */
   margin-top: 2rem;
+  width: 100%; /* 確保佔據父容器寬度 */
 }
 
-footer {
-  background-color: var(--bs-dark);
-  color: var(--text-light);
-  font-size: 0.95rem;
+.pagination .btn {
+  min-width: 80px; /* 確保按鈕寬度一致 */
   text-align: center;
-  padding: 15px 0;
-  margin-top: auto;
 }
 
-.error-message {
-  color: #d32f2f;
-  font-size: 14px;
-  text-align: center;
-  margin-top: 10px;
+.pagination #pageInfo {
+  min-width: 100px; /* 確保文字區域有固定寬度 */
+  text-align: center; /* 文字本身居中 */
+  margin: 0; /* 移除mx-3的影響 */
 }
+
+@media (max-width: 767.98px) {
+  .pagination {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .pagination #pageInfo {
+    min-width: 80px; /* 手機上稍微縮小 */
+  }
+}
+

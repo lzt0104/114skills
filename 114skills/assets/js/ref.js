@@ -107,27 +107,88 @@ const Model = {
   async loadPDF(pdfPath, viewerId, category, pdfIndex) {
     const container = document.querySelector(`#${viewerId} .card-body`);
     if (!container) return;
-  
+
     try {
-      const response = await fetch(pdfPath, { method: 'HEAD' });
-      if (!response.ok) throw new Error(`檔案未找到 (HTTP ${response.status})`);
-  
+      // Set pdf.js worker source
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+
+      // Load PDF document
+      const pdf = await pdfjsLib.getDocument(pdfPath).promise;
+      const numPages = pdf.numPages;
+
+      // Create page container with navigation
       container.innerHTML = `
-        <div style="width: 100%; max-width: 100%; overflow-x: hidden;">
-          <iframe 
-            src="${pdfPath}#page=1&toolbar=0&navpanes=0&scrollbar=0"
-            style="
-              border: none;
-              width: 100%;
-              height: 450px;
-              display: block;
-              overflow-x: hidden;
-              max-width: 100%;
-            ">
-          </iframe>
+        <div class="pdf-pages" style="width: 100%; touch-action: pan-y pinch-zoom; position: relative;">
+          <canvas class="pdf-canvas" style="width: 100%; height: auto;"></canvas>
+          <div class="pdf-navigation text-center mt-2">
+            <button class="btn btn-sm btn-outline-primary me-2" data-action="prev" disabled>上一頁</button>
+            <span class="page-info">1 / ${numPages}</span>
+            <button class="btn btn-sm btn-outline-primary ms-2" data-action="next" ${numPages === 1 ? 'disabled' : ''}>下一頁</button>
+          </div>
         </div>
       `;
+
+      const canvas = container.querySelector('.pdf-canvas');
+      const context = canvas.getContext('2d');
+      let currentPageNum = 1;
+
+      // Function to render a specific page
+      const renderPage = async (pageNum) => {
+        if (pageNum < 1 || pageNum > numPages) return;
+
+        const page = await pdf.getPage(pageNum);
+        const viewport = page.getViewport({ scale: 1.0 });
+        const scale = Math.min(container.offsetWidth / viewport.width, 1.5); // Responsive scaling
+        const scaledViewport = page.getViewport({ scale });
+
+        canvas.height = scaledViewport.height;
+        canvas.width = scaledViewport.width;
+
+        // Render page
+        await page.render({
+          canvasContext: context,
+          viewport: scaledViewport
+        }).promise;
+
+        // Update navigation
+        container.querySelector('.page-info').textContent = `${pageNum} / ${numPages}`;
+        container.querySelector('[data-action="prev"]').disabled = pageNum === 1;
+        container.querySelector('[data-action="next"]').disabled = pageNum === numPages;
+        currentPageNum = pageNum;
+      };
+
+      // Initial render
+      await renderPage(currentPageNum);
+
+      // Add navigation event listeners
+      container.querySelectorAll('.pdf-navigation button').forEach(button => {
+        button.addEventListener('click', () => {
+          const action = button.getAttribute('data-action');
+          const newPageNum = action === 'prev' ? currentPageNum - 1 : currentPageNum + 1;
+          renderPage(newPageNum);
+        });
+      });
+
+      // Add touch swipe support for page navigation
+      let touchStartX = 0;
+      let touchEndX = 0;
+      canvas.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+      canvas.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchStartX - touchEndX;
+        if (swipeDistance > 50) {
+          // Swipe left -> next page
+          renderPage(currentPageNum + 1);
+        } else if (swipeDistance < -50) {
+          // Swipe right -> previous page
+          renderPage(currentPageNum - 1);
+        }
+      });
+
     } catch (error) {
+      console.error('PDF 載入失敗:', error);
       container.innerHTML = `
         <div class="card-body text-center">
           <p class="error-message">無法載入PDF：${error.message}</p>
@@ -135,12 +196,6 @@ const Model = {
       `;
     }
   }
-  
-  
-
-
-
-
 };
 
 const View = {
@@ -160,8 +215,7 @@ const View = {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     const list = document.getElementById('pdf-list');
-
-    // 插入卡片容器
+  
     list.innerHTML = paths.slice(start, end).map((path, i) => {
       const index = start + i;
       const id = `pdf-viewer-${category}-${index}`;
@@ -171,23 +225,25 @@ const View = {
                 </div>
               </div>`;
     }).join('');
-
-    // 懶載入 PDF
+  
     paths.slice(start, end).forEach((path, i) => {
       const index = start + i;
       const id = `pdf-viewer-${category}-${index}`;
       const container = document.getElementById(id);
-
+  
       const observer = new IntersectionObserver((entries, obs) => {
         if (entries[0].isIntersecting) {
           pdfQueue.enqueue(() => Model.loadPDF(path, id, category, index));
           obs.disconnect();
         }
-      }, { threshold: 0.1 });
-
+      }, {
+        threshold: 0.1,
+        rootMargin: '100px' // 提前載入
+      });
+  
       observer.observe(container);
     });
-
+  
     const total = Math.ceil(paths.length / this.itemsPerPage);
     document.getElementById('pageInfo').textContent = `第 ${this.currentPage} 頁 / 共 ${total} 頁`;
     document.getElementById('prevPage').disabled = this.currentPage === 1;
