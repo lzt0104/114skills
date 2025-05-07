@@ -1,190 +1,177 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>114學年技優甄審社群網站</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-top: 70px;
-            font-family: 'Noto Sans TC', sans-serif;
-            background: #f5f5f5;
-        }
-        .container {
-            background: #f5f5f5;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        footer {
-            margin-top: auto;
-            background: #0288d1;
-            color: #fff;
-            padding: 15px 0;
-            text-align: center;
-        }
-        h1 {
-            color: #0288d1;
-            padding: 20px 0;
-            min-height: 60px;
-            overflow: visible;
-            white-space: normal;
-            text-align: center;
-            line-height: 1.6;
-            font-size: 2rem;
-        }
-        p {
-            font-size: 1.1rem;
-            line-height: 2;
-            color: #333;
-            overflow: visible;
-            white-space: normal;
-            margin-bottom: 1.5rem;
-        }
-        .navbar-brand, .nav-link {
-            overflow: visible;
-            white-space: normal;
-            padding: 12px 15px;
-            line-height: 1.5;
-            min-height: 40px;
-        }
-        .dropdown-menu {
-            min-width: 160px;
-            background: #f5f5f5;
-            border: none;
-        }
-        .dropdown-item {
-            overflow: visible;
-            white-space: normal;
-            padding: 10px 15px;
-            background: #f5f5f5;
-            line-height: 1.5;
-            min-height: 40px;
-        }
-        .dropdown-item:hover {
-            background-color: #e0f7fa;
-        }
-        .welcome-section {
-            text-align: center;
-            padding: 2.5rem;
-            background: #fff;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-        .welcome-section .btn {
-            margin: 10px;
-            padding: 12px 25px;
-            font-size: 1rem;
-            border-radius: 5px;
-            line-height: 1.5;
-            min-height: 40px;
-        }
-        @media (max-width: 767px) {
-            body {
-                padding-top: 60px;
-            }
-            h1 {
-                font-size: 1.6rem;
-                padding: 15px 0;
-                min-height: 50px;
-            }
-            p {
-                font-size: 1rem;
-                line-height: 1.8;
-            }
-            .navbar-brand, .nav-link {
-                font-size: 0.9rem;
-                padding: 10px 12px;
-                min-height: 36px;
-            }
-            .dropdown-item {
-                font-size: 0.9rem;
-                padding: 8px 12px;
-                min-height: 36px;
-            }
-            .welcome-section {
-                padding: 1.5rem;
-            }
-            .welcome-section .btn {
-                font-size: 0.9rem;
-                padding: 10px 20px;
-                min-height: 36px;
-            }
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' https://cdn.jsdelivr.net;
+        style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css;
+        font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/;
+        img-src 'self' data:;
+        frame-src https://docs.google.com;
+        connect-src 'self';
+    ">
+
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <title>114學年技優甄審社群網站 - 專業資源與互助平台</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
+
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html">114學年技優甄審社群</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand fw-bold" href="index.html">114學年技優甄審社群</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="導航切換">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">首頁</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">首頁</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pastData" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            歷屆資料
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="pastData">
-                            <li><a class="dropdown-item" href="#" data-url="https://docs.google.com/spreadsheets/d/1ItEwaNOheD-JNnu_DKJnxaqz3mbgcCD_zjsyyIkpUjk/edit?gid=0#gid=0" target="_blank">113學年</a></li>
-                            <li><a class="dropdown-item" href="#" data-url="https://drive.google.com/file/d/11o7srL9M-k4uyGLyoHOIAvmudHN-22IO/view" target="_blank">112學年</a></li>
-                            <li><a class="dropdown-item" href="#" data-url="https://drive.google.com/file/d/1qoQVBE1qiUj70X6hoTx5CSzLA7uZrpRZ/view" target="_blank">111學年</a></li>
+                        <a class="nav-link dropdown-toggle" href="#" id="pastData" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">歷屆資料</a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="pastData">
+                            <li><a class="dropdown-item" href="#"
+                                    data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQa2a8HRCx6-mKfAHUu64k4S67V5slQ7V-kJJWZe7iNI6UBW6zKMWl5OLONDsrXWeJ8_iMh2HJB4Mby/pubhtml">113學年</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"
+                                    data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vTDn_1K-dAix8lK83pBZPBQRS8D9_eWUQ3N-SKWI-n7J2ubSfY_1q3R1xDnDze3V__6tQ7KUNx-Sa3U/pubhtml">112學年</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"
+                                    data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRjVk89J2vLTlM7Kx4pSNQ1o-MCdzE0sryx1-6Q2_0x_aYrj5K7hXBf-GTt8XgoRFHBS04orLxrpLF2/pubhtml">111學年</a>
+                            </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="reference.html">備審資料參考</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">加入LINE社群</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="reference.html">學習歷程資料參考</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-primary btn-sm px-3 ms-lg-2"
+                            href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
+                            target="_blank" rel="noopener noreferrer">加入LINE社群</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-<div class="container">
-    <div class="welcome-section">
-        <h1>與技優甄審社群一起，開啟你的夢想之旅！</h1>
-        <p>技優甄審的路上，你並不孤單！我們是一個充滿熱情的學生社群，專為你提供豐富的歷屆資料、實用的備審參考，以及溫暖的LINE互助社群。</p>
-        <p>讓我們一起努力，準備好迎接屬於你的未來吧！</p>
-        <div>
-            <a href="reference.html" class="btn btn-primary">馬上探索備審資源</a>
-            <a href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn btn-success">加入我們的溫暖社群</a>
-        </div>
-    </div>
-    <div id="pastContent" class="mt-4"></div>
-</div>
+    <header class="hero-section text-white d-flex align-items-center">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold">與技優甄審社群一起，開啟你的夢想之旅！</h1>
+            <p class="lead my-4 col-lg-8 mx-auto">我們是一個充滿熱情的學生社群，專為您提供豐富的歷屆資料、實用的備審參考，以及溫暖的LINE互助社群。讓我們一起努力，迎接屬於您的未來！
+            </p>
+            <!-- 正確分離的兩個按鈕 -->
+            <div class="d-grid gap-3 d-md-flex justify-content-md-center">
+                <a href="reference.html" class="btn btn-lg btn-primary custom-btn px-4 py-2"
+                    aria-label="探索備審資源">馬上探索備審資源</a>
 
-    <!-- 頁尾 -->
-    <footer>
-        <p>114學年技優甄審社群擁有。本網站僅為教育目的創建，與任何原始項目無關。</p>
+                <a href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
+                    target="_blank" class="btn btn-lg btn-outline-light custom-btn px-4 py-2" rel="noopener noreferrer"
+                    aria-label="加入我們的溫暖社群 via LINE">加入我們的溫暖社群</a>
+            </div>
+
+
+        </div>
+    </header>
+
+    <section class="features-section py-5">
+        <div class="container">
+            <h2 class="text-center section-title">我們的核心服務</h2>
+            <div class="row text-center gy-4">
+                <div class="col-md-4">
+                    <div class="feature-item p-4 h-100">
+                        <i class="bi bi-archive-fill fs-1 mb-3"></i>
+                        <h3 class="h4">歷屆甄審資料</h3>
+                        <p class="text-muted">彙整歷年技優甄審重要數據與資訊，助您精準掌握趨勢。</p>
+                        <a href="#" class="btn btn-sm btn-primary stretched-link"
+                            onclick="document.getElementById('pastData').click(); return false;">查看資料</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item p-4 h-100">
+                        <i class="bi bi-file-earmark-text-fill fs-1 mb-3"></i>
+                        <h3 class="h4">學習歷程參考</h3>
+                        <p class="text-muted">提供多樣化的備審資料範例與撰寫技巧，啟發您的靈感。</p>
+                        <a href="reference.html" class="btn btn-sm btn-primary stretched-link">探索資源</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item p-4 h-100">
+                        <i class="bi bi-line fs-1 mb-3"></i>
+                        <h3 class="h4">LINE互助社群</h3>
+                        <p class="text-muted">即時問答、經驗分享、夥伴支持，讓您在升學路上不孤單。</p>
+                        <a href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
+                            target="_blank" class="btn btn-sm btn-primary stretched-link"
+                            rel="noopener noreferrer">立即加入</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="founder-section bg-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                    <img src="./assets/images/IMG_4987.JPG" alt="創辦人照片"
+                        class="img-fluid rounded-circle founder-img shadow">
+                </div>
+                <div class="col-lg-8">
+                    <h2 class="section-title text-lg-start text-center">創辦人的話</h2>
+                    <p class="lead text-muted">大家好！我是這個社群的創辦人。</p>
+                    <p>創辦這個平台的初衷，是希望幫助更多像我一樣在技優甄審路上努力的同學，能夠少走一些彎路，找到屬於自己的方向。我們集結了歷屆的寶貴資料、實用的備審建議，並打造了一個溫暖的互助社群，讓大家可以彼此支持、共同成長。希望你能在這裡找到資源與信心，勇敢追逐夢想！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pastContentSection" class="py-5">
+        <div class="container">
+            <h2 class="text-center section-title">技優甄審歷屆資料</h2>
+            <p class="text-center text-muted mb-4">點擊上方導覽列「歷屆資料」選單以載入特定學年度的內容。</p>
+            <div id="pastContent" class="mt-4 bg-white p-3 rounded shadow-sm">
+                <p class="text-center placeholder-glow" id="pastContentPlaceholder"><span
+                        class="placeholder col-6"></span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section text-white text-center py-5">
+        <div class="container">
+            <h2 class="display-5 fw-bold mb-4">準備好提升您的升學機會嗎？</h2>
+            <p class="lead mb-4">立即加入我們的LINE社群，與眾多夥伴一同交流，獲取第一手資訊！</p>
+            <a href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
+                target="_blank" class="btn btn-lg btn-warning text-dark fw-bold" rel="noopener noreferrer">
+                <i class="bi bi-line me-2"></i>加入LINE社群，掌握先機
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 114學年技優甄審社群。本網站僅為教育目的創建，與任何原始項目無關。&copy;</p>
+        </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const url = this.getAttribute('data-url');
-                const iframe = document.createElement('iframe');
-                iframe.src = url;
-                iframe.width = '100%';
-                iframe.height = '600px';
-                iframe.name = 'pastFrame';
-                const container = document.getElementById('pastContent');
-                container.innerHTML = '';
-                container.appendChild(iframe);
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="assets/js/index.js"></script>
 </body>
+
 </html>

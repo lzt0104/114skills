@@ -1,392 +1,92 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>備審資料參考 - 114學年技優甄審社群網站</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-top: 60px;
-            font-family: 'Noto Sans TC', sans-serif;
-            background: #f5f5f5;
-        }
-        .pdf-canvas {
-            max-width: 100%;
-            height: auto;
-            pointer-events: none;
-        }
-        .pdf-viewer {
-            user-select: none;
-            max-height: 500px;
-            overflow-y: auto;
-            scroll-behavior: smooth;
-            background: #fff;
-            margin-bottom: 20px;
-        }
-        .category-btn {
-            margin-bottom: 10px;
-            padding: 10px 15px;
-            min-height: 40px;
-            overflow: visible;
-            white-space: normal;
-            text-align: center;
-            transition: background-color 0.3s;
-            background: #f0f0f0;
-            border: none;
-        }
-        .category-btn:hover {
-            background-color: #e0f7fa;
-        }
-        .category-btn.active {
-            background-color: #0288d1;
-            color: #fff;
-        }
-        .container {
-            background: #f5f5f5;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        #disclaimerModal .modal-dialog {
-            max-width: 600px;
-        }
-        footer {
-            margin-top: auto;
-            background: #0288d1;
-            color: #fff;
-            padding: 15px 0;
-            text-align: center;
-        }
-        .error-message {
-            color: #d32f2f;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
-            overflow: visible;
-            white-space: normal;
-        }
-        .pdf-list-container {
-            overflow-y: visible;
-        }
-        h1 {
-            color: #0288d1;
-            padding: 15px 0;
-            min-height: 50px;
-            overflow: visible;
-            white-space: normal;
-            text-align: center;
-        }
-        .navbar-brand, .nav-link {
-            overflow: visible;
-            white-space: normal;
-            padding: 10px 15px;
-        }
-        .dropdown-menu {
-            min-width: 150px;
-            background: #f5f5f5;
-            border: none;
-        }
-        .dropdown-item {
-            overflow: visible;
-            white-space: normal;
-            padding: 8px 15px;
-            background: #f5f5f5;
-        }
-        .dropdown-item:hover {
-            background-color: #e0f7fa;
-        }
-        .row, .col-12, .col-md-3, .col-md-9 {
-            background: #f5f5f5;
-        }
-        .pagination {
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .pagination .btn {
-            margin: 0 5px;
-        }
-        @media (max-width: 767px) {
-            .pdf-list-container {
-                margin-top: 20px;
-            }
-            .pdf-viewer {
-                max-height: 400px;
-            }
-            h1 {
-                font-size: 1.5rem;
-                padding: 10px 0;
-            }
-            .navbar-brand, .nav-link {
-                font-size: 0.9rem;
-                padding: 8px 10px;
-            }
-            .dropdown-item {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>備審資料參考 - 114學年技優甄審社群網站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/ref.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
 </head>
+
 <body>
-    <!-- 導航列 -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">114學年技優甄審社群</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">首頁</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pastData" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            歷屆資料
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="pastData">
-                            <li><a class="dropdown-item" href="#" data-url="https://docs.google.com/spreadsheets/d/1ItEwaNOheD-JNnu_DKJnxaqz3mbgcCD_zjsyyIkpUjk/edit?gid=0#gid=0" target="_blank">113學年</a></li>
-                            <li><a class="dropdown-item" href="#" data-url="https://drive.google.com/file/d/11o7srL9M-k4uyGLyoHOIAvmudHN-22IO/view" target="_blank">112學年</a></li>
-                            <li><a class="dropdown-item" href="#" data-url="https://drive.google.com/file/d/1qoQVBE1qiUj70X6hoTx5CSzLA7uZrpRZ/view" target="_blank">111學年</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="reference.html">備審資料參考</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">加入LINE社群</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 免責聲明彈窗 -->
-    <div class="modal fade" id="disclaimerModal" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="disclaimerModalLabel">免責聲明與著作權須知</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>本頁面展示的備審資料僅供參考，嚴禁複製、列印、下載或用於任何商業用途。所有資料版權歸原作者所有，未經授權不得轉載或散布。請尊重智慧財產權，違者需自行承擔法律責任。</p>
-                    <p>點擊「同意」表示您已閱讀並同意遵守上述條款。</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">不同意</button>
-                    <button type="button" class="btn btn-primary" id="agreeButton">同意</button>
-                </div>
-            </div>
-        </div>
+  <!-- 導覽列 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">114學年技優甄審社群</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pastData" role="button" data-bs-toggle="dropdown" aria-expanded="false">歷屆資料</a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="pastData">
+                <li><a class="dropdown-item" href="#" data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQa2a8HRCx6-mKfAHUu64k4S67V5slQ7V-kJJWZe7iNI6UBW6zKMWl5OLONDsrXWeJ8_iMh2HJB4Mby/pubhtml">113學年</a></li>
+                <li><a class="dropdown-item" href="#" data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vTDn_1K-dAix8lK83pBZPBQRS8D9_eWUQ3N-SKWI-n7J2ubSfY_1q3R1xDnDze3V__6tQ7KUNx-Sa3U/pubhtml">112學年</a></li>
+                <li><a class="dropdown-item" href="#" data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRjVk89J2vLTlM7Kx4pSNQ1o-MCdzE0sryx1-6Q2_0x_aYrj5K7hXBf-GTt8XgoRFHBS04orLxrpLF2/pubhtml">111學年</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link active" href="reference.html">學習歷程資料參考</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-outline-primary btn-sm px-3 ms-lg-2" href="https://line.me/..." target="_blank" rel="noopener noreferrer">加入LINE社群</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- 主要內容 -->
-    <div class="container py-5" id="pdfContent" style="display: none;">
-        <p class="text-center mb-5 fw-bold">備審資料參考</p>
-        <div class="row">
-            <!-- 類別選擇 -->
-            <div class="col-12 col-md-3">
-                <div id="category-list" class="list-group mb-4"></div>
-            </div>
-            <!-- PDF展示區 -->
-            <div class="col-12 col-md-9">
-                <div id="pdf-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pdf-list-container"></div>
-                <div class="pagination">
-                    <button class="btn btn-outline-primary" id="prevPage" disabled>上一頁</button>
-                    <span id="pageInfo" class="mx-3"></span>
-                    <button class="btn btn-outline-primary" id="nextPage">下一頁</button>
-                </div>
-            </div>
+  <!-- 免責聲明彈窗 -->
+  <div class="modal fade" id="disclaimerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">免責聲明與著作權須知</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
+        <div class="modal-body">
+          <p>所有備審資料僅供學習參考，嚴禁複製、下載、列印或用於商業用途，違者自負法律責任。</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">不同意</button>
+          <button class="btn btn-primary" id="agreeButton">同意</button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- 頁尾 -->
-    <footer>
-        <p>114學年技優甄審社群擁有。本網站僅為教育目的創建，與任何原始項目無關。</p>
-    </footer>
+  <!-- 主內容 -->
+  <main class="container py-5" id="pdfContent" style="display: none;">
+    <h1 class="text-center section-title">學習歷程資料參考</h1>
+    <div class="row">
+      <aside class="col-md-3">
+        <div id="category-list" class="list-group mb-4"></div>
+      </aside>
+      <section class="col-md-9">
+        <div id="pdf-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pdf-list-container"></div>
+        <div class="pagination mt-3 text-center">
+          <button class="btn btn-outline-primary" id="prevPage" disabled>上一頁</button>
+          <span id="pageInfo" class="mx-3"></span>
+          <button class="btn btn-outline-primary" id="nextPage">下一頁</button>
+        </div>
+      </section>
+    </div>
+  </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        // 顯示免責聲明彈窗
-        const disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'), {
-            backdrop: 'static',
-            keyboard: false
-        });
-        disclaimerModal.show();
+  <!-- 頁尾 -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2025 114學年技優甄審社群。本網站僅為教育目的創建，與任何原始項目無關。&copy;</p>
+    </div>
+  </footer>
 
-        // 處理同意按鈕
-        document.getElementById('agreeButton').addEventListener('click', function() {
-            disclaimerModal.hide();
-            document.getElementById('pdfContent').style.display = 'block';
-            Controller.init();
-        });
-
-        // 處理歷屆資料下拉選單
-        document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const url = this.getAttribute('data-url');
-                window.open(url, '_blank');
-            });
-        });
-
-        // MVC 實作
-        const Controller = {
-            init() {
-                const categories = [
-                    { id: 'B', name: 'B課程學習成果' },
-                    { id: 'C', name: 'C多元表現' },
-                    { id: 'D1', name: 'D-1多元表現綜整心得' },
-                    { id: 'D2', name: 'D-2學習歷程自述' },
-                    { id: 'D3', name: 'D-3其他有利審查資料' }
-                ];
-                View.renderCategories(categories);
-                this.showCategory('B');
-                document.getElementById('pdf-list').addEventListener('contextmenu', (e) => e.preventDefault());
-            },
-
-            showCategory(category) {
-                View.currentCategory = category;
-                View.currentPage = 1;
-                View.renderPDFsWithPagination(category, Model.generateFilePaths(category));
-            }
-        };
-
-        const Model = {
-            pdfFiles: {
-                'B': { count: 24 },
-                'C': { count: 21 },
-                'D1': { count: 25 },
-                'D2': { count: 29 },
-                'D3': { count: 12 }
-            },
-
-            generateFilePaths(category) {
-                const count = this.pdfFiles[category].count;
-                const paths = [];
-                const prefix = category === 'B' ? 'b' : category === 'C' ? 'c' : `d${category.replace('D', '')}`;
-                const folder = category === 'B' ? 'b' : category === 'C' ? 'c' : `d${category.replace('D', '')}`;
-                for (let i = 1; i <= count; i++) {
-                    paths.push(`/assets/pdfs/${folder}/${prefix}${i}.pdf`);
-                }
-                return paths;
-            },
-
-            async loadPDF(pdfPath, viewerId, category, pdfIndex) {
-                console.log(`嘗試載入PDF: ${pdfPath}`);
-                try {
-                    const response = await fetch(pdfPath, { method: 'HEAD' });
-                    if (!response.ok) {
-                        throw new Error(`檔案未找到 (HTTP ${response.status})`);
-                    }
-
-                    const pdf = await pdfjsLib.getDocument(pdfPath).promise;
-                    const container = document.querySelector(`#${viewerId} .card-body`);
-                    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                        const page = await pdf.getPage(pageNum);
-                        const canvasId = `pdf-canvas-${category}-${pdfIndex}-${pageNum}`;
-                        const canvas = document.createElement('canvas');
-                        canvas.id = canvasId;
-                        canvas.className = 'pdf-canvas mb-2';
-                        container.appendChild(canvas);
-
-                        const context = canvas.getContext('2d');
-                        const viewport = page.getViewport({ scale: 1.0 });
-                        canvas.height = viewport.height;
-                        canvas.width = viewport.width;
-
-                        await page.render({
-                            canvasContext: context,
-                            viewport: viewport
-                        }).promise;
-                    }
-                } catch (error) {
-                    console.error(`載入PDF失敗 (${pdfPath}):`, error.message);
-                    document.getElementById(viewerId).innerHTML = `
-                        <div class="card-body text-center">
-                            <p class="error-message">無法載入PDF：${error.message}</p>
-                            <p class="error-message">請確認檔案是否存在於 ${pdfPath}</p>
-                            <p class="error-message">若檔案存在，可能是CORS問題，請檢查伺服器設定</p>
-                        </div>
-                    `;
-                }
-            }
-        };
-
-        const View = {
-            currentCategory: null,
-            currentPage: 1,
-            itemsPerPage: 3,
-
-            renderCategories(categories) {
-                const categoryList = document.getElementById('category-list');
-                categoryList.innerHTML = categories.map(category => `
-                    <button onclick="Controller.showCategory('${category.id}')"
-                            class="list-group-item list-group-item-action category-btn ${category.id === 'B' ? 'active' : ''}"
-                            id="cat-${category.id}">
-                        ${category.name}
-                    </button>
-                `).join('');
-            },
-
-            renderPDFsWithPagination(category, filePaths) {
-                const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-                const endIndex = startIndex + this.itemsPerPage;
-                const paginatedFiles = filePaths.slice(startIndex, endIndex);
-
-                const pdfList = document.getElementById('pdf-list');
-                pdfList.innerHTML = paginatedFiles.map((pdfPath, index) => {
-                    const pdfIndex = startIndex + index;
-                    const viewerId = `pdf-viewer-${category}-${pdfIndex}`;
-                    return `
-                        <div class="col">
-                            <div class="card pdf-viewer" id="${viewerId}">
-                                <div class="card-body p-2"></div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-
-                // 更新分頁資訊
-                const totalPages = Math.ceil(filePaths.length / this.itemsPerPage);
-                document.getElementById('pageInfo').textContent = `第 ${this.currentPage} 頁 / 共 ${totalPages} 頁`;
-                document.getElementById('prevPage').disabled = this.currentPage === 1;
-                document.getElementById('nextPage').disabled = this.currentPage === totalPages;
-
-                // 為當前頁的PDF載入內容
-                paginatedFiles.forEach((pdfPath, index) => {
-                    const pdfIndex = startIndex + index;
-                    const viewerId = `pdf-viewer-${category}-${pdfIndex}`;
-                    Model.loadPDF(pdfPath, viewerId, category, pdfIndex);
-                });
-            },
-
-            setActiveCategory(category) {
-                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-                document.getElementById(`cat-${category}`).classList.add('active');
-            }
-        };
-
-        // 分頁按鈕事件
-        document.getElementById('prevPage').addEventListener('click', () => {
-            if (View.currentPage > 1) {
-                View.currentPage--;
-                View.renderPDFsWithPagination(View.currentCategory, Model.generateFilePaths(View.currentCategory));
-            }
-        });
-
-        document.getElementById('nextPage').addEventListener('click', () => {
-            const filePaths = Model.generateFilePaths(View.currentCategory);
-            const totalPages = Math.ceil(filePaths.length / View.itemsPerPage);
-            if (View.currentPage < totalPages) {
-                View.currentPage++;
-                View.renderPDFsWithPagination(View.currentCategory, Model.generateFilePaths(View.currentCategory));
-            }
-        });
-    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/ref.js"></script>
 </body>
+
 </html>
