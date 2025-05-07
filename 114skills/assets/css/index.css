@@ -1,0 +1,313 @@
+:root {
+    --bs-primary-rgb: 0, 86, 179; /* 深藍色 #0056B3 */
+    --bs-primary: #0056B3;
+    --bs-secondary-rgb: 108, 117, 125; /* Bootstrap default gray */
+    --bs-secondary: #6c757d;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-light: #f8f9fa;
+    --bs-dark-rgb: 33, 37, 41; /* Bootstrap default dark */
+    --bs-dark: #212529;
+    --custom-accent: #FFC107; /* 金色點綴 (Bootstrap warning color) */
+    --text-dark: #212529;
+    --text-light: #f8f9fa;
+    --body-bg: #f0f2f5; /* 更淺的灰色背景 */
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    padding-top: 70px; /* Navbar height */
+    background-color: var(--body-bg);
+    color: var(--text-dark);
+    line-height: 1.7;
+}
+
+/* Navbar */
+.navbar {
+    transition: background-color 0.3s ease-in-out;
+}
+.navbar-brand {
+    letter-spacing: 0.5px;
+}
+.nav-link {
+    font-weight: 500;
+}
+.nav-item .btn-outline-primary {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+    transition: all 0.3s ease;
+}
+.nav-item .btn-outline-primary:hover,
+.nav-item .btn-outline-primary:focus {
+    background-color: var(--bs-primary);
+    color: var(--text-light);
+}
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #007bff 100%); /* 主色到亮藍色的漸層 */
+    min-height: calc(85vh - 70px); /* 考慮 navbar 高度 */
+    padding: 4rem 0;
+}
+.hero-section h1 {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.hero-section .btn-light {
+    color: var(--bs-primary);
+    font-weight: 500;
+}
+.hero-section .btn-lg {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 50px; /* 圓角按鈕 */
+}
+
+/* Section Titles */
+.section-title {
+    font-weight: 700;
+    color: var(--bs-primary);
+    margin-bottom: 3rem !important; /* Increased margin */
+    position: relative;
+    padding-bottom: 1rem; /* Space for the accent line */
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; /* Wider accent line */
+    height: 4px; /* Thicker accent line */
+    background-color: var(--custom-accent);
+    border-radius: 2px;
+}
+/* For left-aligned titles on larger screens */
+@media (min-width: 992px) {
+    .text-lg-start.section-title::after {
+        left: 0;
+        transform: translateX(0);
+    }
+}
+
+/* Features Section */
+.features-section {
+    background-color: var(--bs-light);
+}
+.feature-item {
+    background-color: #ffffff;
+    border-radius: 10px; /* Softer corners */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.feature-item i {
+    color: var(--bs-primary);
+    transition: color 0.3s ease;
+}
+.feature-item:hover i {
+    color: var(--custom-accent);
+}
+.feature-item h3 {
+    color: var(--bs-dark);
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+.feature-item p {
+    font-size: 0.95rem;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+.feature-item .btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    font-weight: 500;
+}
+.feature-item .btn-primary:hover {
+    background-color: #00418a; /* Darker shade of primary */
+    border-color: #00418a;
+}
+
+/* Founder Section */
+.founder-section .founder-img {
+    width: 220px; /* Slightly larger image */
+    height: 220px;
+    object-fit: cover;
+    border: 6px solid var(--bs-light); /* Border color matching section background */
+    box-shadow: 0 0 0 4px var(--bs-primary), 0 8px 20px rgba(0,0,0,0.15); /* Double border effect + shadow */
+}
+.founder-section p.lead {
+    font-weight: 500;
+    color: #495057;
+}
+.founder-section p {
+    font-size: 1.05rem;
+    color: #555;
+}
+
+/* Past Content Section */
+#pastContentSection {
+    background-color: var(--body-bg); /* Matches body background */
+}
+#pastContent iframe {
+    width: 100%;
+    min-height: 600px; /* Increased height */
+    border: none; /* Remove iframe border, rely on container shadow */
+    border-radius: 8px; /* Match container rounding */
+}
+#pastContent {
+    min-height: 200px; /* Placeholder height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#pastContentPlaceholder.placeholder-glow .placeholder {
+    height: 2em;
+    background-color: var(--bs-secondary);
+}
+
+/* CTA Section */
+.cta-section {
+    background: var(--bs-dark) url('./assets/images/cta-background.jpg') no-repeat center center; /* Optional: Add a subtle background pattern or image */
+    background-blend-mode: overlay; /* If using image */
+    background-color: var(--bs-primary); /* Fallback / primary color */
+    background-size: cover;
+    position: relative;
+}
+.cta-section::before { /* Optional: Dark overlay for better text readability if using a light background image */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* background-color: rgba(0, 0, 0, 0.5); */ /* Uncomment if needed */
+}
+.cta-section .container {
+    position: relative; /* Ensure content Gargantuan is above overlay */
+    z-index: 1;
+}
+.cta-section h2 {
+    font-weight: 700;
+}
+.cta-section .btn-warning {
+    background-color: var(--custom-accent);
+    border-color: var(--custom-accent);
+    transition: all 0.3s ease;
+    padding: 0.8rem 2.5rem;
+}
+.cta-section .btn-warning:hover {
+    background-color: #e0a800; /* Darker gold */
+    border-color: #e0a800;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer.bg-dark {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+footer p {
+    font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .hero-section {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+    .hero-section h1 {
+        font-size: 2.5rem; /* Adjusted for tablets */
+    }
+    .founder-section .text-lg-start.section-title {
+        text-align: center !important;
+    }
+    .founder-section .text-lg-start.section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 767.98px) {
+    body {
+        padding-top: 63px; /* Adjusted for potentially smaller navbar */
+    }
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    .hero-section .btn-lg {
+        font-size: 1rem;
+        padding: 0.6rem 1.8rem;
+    }
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem !important;
+    }
+    .section-title::after {
+        width: 60px;
+        height: 3px;
+    }
+    .founder-img {
+        width: 180px !important;
+        height: 180px !important;
+    }
+    .cta-section h2 {
+        font-size: 1.8rem;
+    }
+    .cta-section .btn-lg {
+        font-size: 1rem;
+    }
+}
+
+/* Custom Button Styles */
+.custom-btn {
+    border-radius: 50px; /* Matches hero section buttons */
+    font-weight: 500;
+    padding: 0.8rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary.custom-btn {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--text-light);
+}
+
+.btn-primary.custom-btn:hover,
+.btn-primary.custom-btn:focus {
+    background-color: #ffffff; /* Darker shade, consistent with feature-item */
+    border-color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-outline-primary.custom-btn {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+}
+
+.btn-outline-primary.custom-btn:hover,
+.btn-outline-primary.custom-btn:focus {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--text-light);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Responsive adjustments for buttons */
+@media (max-width: 767.98px) {
+    .custom-btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+}
