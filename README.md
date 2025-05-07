@@ -1,6 +1,6 @@
 # 114學年技優甄審社群網站
 
-(![image](https://github.com/user-attachments/assets/758d8777-664d-4948-8752-858746c560a9)
+![image](https://github.com/user-attachments/assets/758d8777-664d-4948-8752-858746c560a9)
 
 ## 專案概述
 
