@@ -12,14 +12,14 @@
         style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css;
         font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/;
         img-src 'self' data:;
-        frame-src https://docs.google.com;
+        frame-src https://docs.google.com https://forms.gle;
         connect-src 'self';
     ">
 
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-    <title>歷屆資料 - 114學年技優甄審社群</title>
+    <title>填寫114學年技優資料表單 - 114學年技優甄審社群</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,23 +45,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="pastData" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">歷屆資料</a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="pastData">
-                            <li><a class="dropdown-item" href="#"
-                                    data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQa2a8HRCx6-mKfAHUu64k4S67V5slQ7V-kJJWZe7iNI6UBW6zKMWl5OLONDsrXWeJ8_iMh2HJB4Mby/pubhtml">113學年</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#"
-                                    data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vTDn_1K-dAix8lK83pBZPBQRS8D9_eWUQ3N-SKWI-n7J2ubSfY_1q3R1xDnDze3V__6tQ7KUNx-Sa3U/pubhtml">112學年</a>
-                            </li>
-                            <li><a class="dropdown-item" href="#"
-                                    data-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRjVk89J2vLTlM7Kx4pSNQ1o-MCdzE0sryx1-6Q2_0x_aYrj5K7hXBf-GTt8XgoRFHBS04orLxrpLF2/pubhtml">111學年</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://forms.gle/yssMbiy9cDmE12ue9l">填寫114學年表單</a></li>
+                    <li class="nav-item"><a class="nav-link" href="old.html">歷屆資料</a></li>
                     <li class="nav-item"><a class="nav-link" href="reference.html">學習歷程資料參考</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="114skills.html">填寫114學年表單</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-outline-primary btn-sm px-3 ms-lg-2"
                             href="https://line.me/ti/g2/StIeyzM_9apJ3yugTlInMPfhlxheD2X2-_xwyg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"
                             target="_blank" rel="noopener noreferrer">加入LINE社群</a></li>
@@ -70,13 +56,13 @@
         </div>
     </nav>
 
-    <section id="pastContentSection" class="py-5">
+    <section class="form-section py-5">
         <div class="container">
-            <h2 class="text-center section-title">技優甄審歷屆資料</h2>
-            <p class="text-center text-muted mb-4">請從上方導覽列「歷屆資料」選單選擇特定學年度以載入內容。</p>
-            <div id="pastContent" class="mt-4 bg-white p-3 rounded shadow-sm">
-                <p class="text-center placeholder-glow" id="pastContentPlaceholder"><span
-                        class="placeholder col-6"></span></p>
+            <h2 class="text-center section-title">填寫114學年技優資料表單</h2>
+            <p class="text-center text-muted mb-4">請填寫以下表單，提供您的技優甄審相關資料，幫助我們完善社群資源！</p>
+            <div class="mt-4 bg-white p-3 rounded shadow-sm">
+                <iframe src="https://forms.gle/yssMbiy9cDmE12ue9"
+                        width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">正在載入表單...</iframe>
             </div>
         </div>
     </section>
